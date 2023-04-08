@@ -4,20 +4,40 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/home'
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/home',
+    name: 'Home',
+    component: Home,
+  },
+  {
+    path: '/sort',
+    name: '分类',
+    component: () => import('../views/book/Sort.vue')
+  }, 
+  {
+    path: '/post',
+    name: '论坛',
+    component: () => import('../views/post/Post.vue')
+  },
+   {
+     path: '/bookDetail/:id',
+     name: '书籍详情',
+     component: () => import('../views/book/BookDetail.vue')
+   },
+   {
+     path: '/postDetail/:id',
+     name: '帖子详情',
+     component: () => import('../views/post/PostDetail.vue')
+   },
+  {
+    path: '/404',
+    component: () => import('../views/Error.vue')
   }
+
 ]
 
 const router = new VueRouter({
@@ -26,4 +46,12 @@ const router = new VueRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.path == from.path) {
+    return;
+  } else {
+    next()
+  }
+
+})
 export default router

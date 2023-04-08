@@ -1,0 +1,22 @@
+li {
+  list-style: none;
+}
+
+a {
+  list-style: none;
+}
+
+.w {
+  padding: 1rem 20rem;
+  background-color: #eee;
+
+}
+
+body,
+html,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
